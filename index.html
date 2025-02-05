@@ -323,23 +323,12 @@
                });
        document.querySelector('.add-btn').addEventListener('click', ()=>{
         cartBodyparagraph.style.display = 'none';
-        console.log(currentImg)
-        console.log(img1)
-        selectedimg == 'p-1' ? cartBody.appendChild(createProductCard(imgsrc1)):
-        selectedimg == 'p-2' ? cartBody.appendChild(createProductCard(imgsrc2)):
-        selectedimg == 'p-3' ? cartBody.appendChild(createProductCard(imgsrc3)):
-        selectedimg == 'p-4' ? cartBody.appendChild(createProductCard(imgsrc4)):null;
+        selectedimg == 'p-1' || currentImg == img1? cartBody.appendChild(createProductCard(imgsrc1)):
+        selectedimg == 'p-2' || currentImg == img2 ? cartBody.appendChild(createProductCard(imgsrc2)):
+        selectedimg == 'p-3' || currentImg == img3? cartBody.appendChild(createProductCard(imgsrc3)):
+        selectedimg == 'p-4' || currentImg == img4  ? cartBody.appendChild(createProductCard(imgsrc4)):null;
         
        })
-       document.querySelector('.add-btn').addEventListener('click', ()=>{
-        cartBodyparagraph.style.display = 'none';
-        currentImg == img1 ? cartBody.appendChild(createProductCard(img1)):
-        currentImg == img2 ? cartBody.appendChild(createProductCard(img2)):
-        currentImg == img3 ? cartBody.appendChild(createProductCard(img3)):
-        currentImg == img4 ? cartBody.appendChild(createProductCard(img4)):console.log('its not working');
-        
-       })
-
           const menu = document.querySelector('.menu')
           const hidden = document.querySelector('.hidden');
           menu.addEventListener('click', ()=>{
