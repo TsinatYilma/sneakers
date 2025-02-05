@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Sneakers</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  
+</head>
+<body>
+
+  <div class="header">
+    
+      <div class="centering">
+        <ul class="nav">
+          <li class="menu"><img src="images\icon-menu.svg" alt="" class="menu-img"></li>
+          <div id="menu" class="hidden">
+            <img src='images/icon-close.svg' alt="" class="menu-exit">
+            <ul class="menu-elements">
+              <li>Collections</li>
+              <li>Men</li>
+              <li >Women</li>
+              <li>About</li>
+              <li>Contact</li>
+            </ul>
+         </div>
+          <li class="company-name">sneakers</li>
+          <li class="li">Collections</li>
+          <li class="li">Men</li>
+          <li class="li">Women</li>
+          <li class="li">About</li>
+          <li class="li">Contact</li>
+        </ul>
+            
+            <div >
+        <ul class="log">
+          <li class="relative"> <span class="item-count">0</span><img src="images\icon-cart.svg" alt="" class="toggle-img"></li>
+        
+          <div class="toggle-box">
+            <h4>Cart</h4>
+            <div class="cart-body">
+              <p class="cart-p"> your cart is empty</p>
+            </div>
+          </div>
+          <li><img src="images\image-avatar.png" alt="" class="profile" width="42" height="40"></li>
+        </ul>
+            </div>
+      </div>
+  </div>
+
+
+  <div class="main">
+    <div class="picture-side">
+
+      <div class="img-view">
+        <img src="images\image-product-1.jpg" alt="" id="fit-image" class="fit-image" >
+        <div class="slider">
+          <img src="images\icon-previous.svg" alt="" class="previous">
+          <img src="images\icon-next.svg" alt="" class="next">
+        </div>
+      </div>
+      <div class="img-slide">
+        <img src="images\image-product-1-thumbnail.jpg" width="80px" height="80px" alt="" id="p-1" class="thumbnail"><img src="images\image-product-2-thumbnail.jpg" alt="" width="80px" height="80px" id="p-2" class="thumbnail">
+        <img src="images\image-product-3-thumbnail.jpg" alt="" width="80px" height="80px" id="p-3" class="thumbnail"><img src="images\image-product-4-thumbnail.jpg" alt="" width="80px" height="80px" id="p-4" class="thumbnail">
+      </div>
+    </div>
+    <div class="para-side">
+      <p class="p1">sneaker company</p>
+      <h1>Fall Limited Edition Sneakers</h1>
+      <p class="paragraph">
+        These low-profile sneakers are your perfect casual wear companion. Featuring a
+        durable rubber outer sole, they’ll withstand everything the weather can offer.
+      </p>
+      <p class="p2">$<span class="price">125.00</span>   <button>50%</button></p>
+      <p class="p3">$250.00</p>
+      <div class="btns">
+        <button class="piece-btn">
+          <img src="images\icon-minus.svg" alt="" class="minus">
+          <span class="number">1</span>
+          <img src="images\icon-plus.svg" alt="" class="plus">
+        </button>
+        <button class="add-btn">
+          <img src="images\icon-cart.svg" width="18" height="16" class="icon" alt="">
+          Add to cart
+        </button>
+      </div>
+    </div>
+   
+  </div>
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+
+  <div class="lightbox" id="lightbox"></div>
+
+  <script>
+       const cart = document.querySelector('.toggle-img');
+       const toggle = document.querySelector('.toggle-box');
+       const cartBody = document.querySelector('.cart-body')
+       const cartBodyparagraph = document.querySelector('.cart-p')
+       const amount = document.querySelector('.piece-btn');
+       const num = document.querySelector('.number');
+
+       const thumbnails = document.querySelectorAll('.thumbnail');
+       const imgView = document.querySelector('.fit-image');
+
+       //its make the cart-box visible
+       cart.addEventListener('click', () =>{
+        toggle.style.display == 'block' ? toggle.style.display = 'none': toggle.style.display = 'block';
+       })
+
+       // to specify the how much piece the user wants
+       document.querySelector('.minus').addEventListener('click', ()=>{
+        let currentnum = parseInt(num.textContent);
+        num.textContent = (currentnum>1) ? currentnum-1:currentnum;
+        
+       })
+       document.querySelector('.plus').addEventListener('click', ()=>{
+        let currentnum = parseInt(num.textContent);
+        num.textContent = currentnum+1;
+       })
+  
+       //the below snippet will add the shoe selected to the cart
+       let selectedimg = '';
+       function check(img){
+              selectedimg = '';
+              selectedimg = img.getAttribute('id');
+       }
+       
+        thumbnails.forEach(thumbnail => {
+            
+            thumbnail.addEventListener('click', ()=>{
+              thumbnail.getAttribute('id') == 'p-2' ? (imgView.src = 'images/image-product-2.jpg', check(thumbnail)) :
+              thumbnail.getAttribute('id') == 'p-3' ? (imgView.src = 'images/image-product-3.jpg', check(thumbnail)) :
+              thumbnail.getAttribute('id') == 'p-4' ? (imgView.src = 'images/image-product-4.jpg' , check(thumbnail)):
+              (imgView.src = 'images/image-product-1.jpg',check(thumbnail)) ;
+            })
+       });
+       const imgsrc1 = "images/image-product-1-thumbnail.jpg";
+       const imgsrc2 = "images/image-product-2-thumbnail.jpg";
+       const imgsrc3 = "images/image-product-3-thumbnail.jpg";
+       const imgsrc4 = "images/image-product-4-thumbnail.jpg";
+       /*
+       const divP1 = document.createElement('div');
+       divP1.className = 'divP1'
+       const divP1flex = document.createElement('div')
+       divP1flex.style.display = 'flex'
+       const img = document.createElement('img');img.src="images/image-product-1-thumbnail.jpg";img.width=50;img.height=50;
+       const par = document.createElement('p'); par.textContent='Fall Limited Edition Sneakers';
+       const remove = document.createElement('img'); remove.style.objectFit='cover'; remove.src = ''; remove.width=14; remove.height=16;
+       divP1flex.append(img, par, remove);
+       divP1.appendChild(divP1flex);
+       console.log(divP1);*/
+      
+      
+      console.log(num.textContent)
+
+      
+
+       function createProductCard(imageSrc) {
+              const money = document.querySelector('.price')
+              const price = parseInt(money.textContent)
+              let piece = parseInt(num.textContent)
+              const exp = document.querySelector('.item-count');
+              exp.style.display='block'
+              let count = parseInt(exp.textContent)
+              count += piece;
+              exp.textContent = count;
+              const divP1 = document.createElement('div');
+              divP1.className = 'divP1';
+              
+              const divP1flex = document.createElement('div');
+              divP1flex.style.display = 'flex';
+              divP1flex.style.alignItems = 'center'; // Added for better alignment of items
+              
+              const img = document.createElement('img');
+              img.src = imageSrc;
+              img.width = 50;
+              img.height = 50;
+              img.style.borderRadius='5px';
+
+              const result = piece*price;
+              
+              const par = document.createElement('p');
+              par.innerHTML = `Fall Limited Edition Sneakers <br> $${price} x ${piece}  =  <span style="color: black;">$${result}</span>`;
+              
+              
+              const remove = document.createElement('img');
+              remove.src = 'images/icon-delete.svg';
+              remove.style.cursor = 'pointer';
+              remove.width=14;
+              remove.height=16;
+              remove.addEventListener('click', () => {
+              // Remove the product card from the cart
+              divP1.remove();
+
+              // Update the item count
+              count -= piece;
+              if (count <= 0) {
+                exp.style.display = 'none';
+                exp.textContent = '0';
+              } else {
+                exp.textContent = count;
+              }
+            });
+
+              const btn = document.createElement('button');
+              btn.textContent = 'Checkout';
+              btn.style.width='300px';
+              btn.style.height='50px';
+              btn.style.borderRadius='8px';
+              btn.style.backgroundColor='hsl(26, 100%, 55%)'
+              btn.style.border='none'
+              btn.style.fontWeight='bolder'
+              btn.addEventListener('click', ()=>{
+              toggle.style.display = 'none'
+              })
+              
+              divP1flex.append(img, par, remove); 
+              divP1flex.style.display='flex';
+              divP1flex.style.justifyContent='space-between'
+              divP1flex.style.marginBottom='20px';
+              divP1flex.style.marginTop='20px';
+              divP1.append(divP1flex, btn);
+              divP1.style.margin='10px';
+              return divP1;
+       }
+       const p1 = document.querySelector('.p-1');
+       const p2 = document.querySelector('.p-2');
+       const p3 = document.querySelector('.p-3');
+       const p4 = document.querySelector('.p-4');
+       document.querySelector('.add-btn').addEventListener('click', ()=>{
+        cartBodyparagraph.style.display = 'none';
+        selectedimg == 'p-1' || finalPath == imgsrc1 ? cartBody.appendChild(createProductCard(imgsrc1)):
+        selectedimg == 'p-2' || finalPath == imgsrc2 ? cartBody.appendChild(createProductCard(imgsrc2)):
+        selectedimg == 'p-3' || finalPath == imgsrc3? cartBody.appendChild(createProductCard(imgsrc3)):
+        selectedimg == 'p-4' || finalPath == imgsrc4? cartBody.appendChild(createProductCard(imgsrc4)):null;
+        
+       })
+       
+       imgView.addEventListener('click', () => {
+         const pictureSide = document.querySelector('.picture-side')
+          const gallery = pictureSide.cloneNode(true);
+          const galleryimg = gallery.querySelector('.fit-image');
+          const lightbox = document.getElementById('lightbox');
+          const exit = document.createElement('img')
+          exit.src='images/icon-close.svg'
+          
+          
+            lightbox.append(exit, gallery);  
+            lightbox.style.display = 'flex';
+            lightbox.style.flexDirection='column'
+
+          exit.style.marginLeft = '300px';
+          exit.style.marginBottom = '10px';
+          exit.addEventListener('click', () => {
+            lightbox.style.display = 'none'; 
+            lightbox.innerHTML = '';
+  }); 
+          const thumbnails = document.querySelectorAll('.thumbnail');
+          thumbnails.forEach(thumbnail => {
+            
+            thumbnail.addEventListener('click', ()=>{
+              thumbnail.getAttribute('id') == 'p-2' ? (galleryimg.src = 'images/image-product-2.jpg', console.log('its working')) :
+              thumbnail.getAttribute('id') == 'p-3' ? (galleryimg.src = 'images/image-product-3.jpg') :
+              thumbnail.getAttribute('id') == 'p-4' ? (galleryimg.src = 'images/image-product-4.jpg'):
+              (galleryimg.src = 'images/image-product-1.jpg') ;
+            })
+       });
+ });
+         
+           // this to slide the im-view
+           let img1 = 'images/image-product-1.jpg';
+           let img2 = 'images/image-product-2.jpg';
+           let img3 = 'images/image-product-3.jpg';
+           let img4 = 'images/image-product-4.jpg';
+           const arr = [img1, img2, img3, img4]
+           const previous = document.querySelector('.previous')
+           const next = document.querySelector('.next')
+            // Extract the part of the path from 'images' to the end
+            let imagePath = imgView.src.split('images')[1];
+
+            // Ensure there is no leading slash
+            if (imagePath.startsWith('/')) {
+              imagePath = imagePath.substring(1);
+            }
+            
+            // Concatenate 'images/' with the extracted path
+            let finalPath = `"images/${imagePath}"`;
+           next.addEventListener('click', ()=>{
+            let index = arr.indexOf(finalPath);
+            index = (index + 1)%arr.length;
+            imgView.src = arr[index];
+            finalPath = arr[index]
+            console.log(finalPath);
+            console.log(imgView.src)
+            console.log(imagePath)
+
+           })
+           previous.addEventListener('click', () => {
+                  let index = arr.indexOf(finalPath); 
+                  index = (index - 1 + arr.length) % arr.length;
+                  imgView.src = arr[index];
+                  finalPath = arr[index]
+               });
+
+          const menu = document.querySelector('.menu')
+          const hidden = document.querySelector('.hidden');
+          menu.addEventListener('click', ()=>{
+            
+            hidden.style.display = 'block';
+          })
+           document.querySelector('.menu-exit').addEventListener('click', ()=>{
+            hidden.style.display = 'none';
+           })
+
+
+     
+  </script>
+</body>
+</html>
