@@ -13,6 +13,9 @@
   
 </head>
 <body>
+  <svg class="svg-image" width="14" height="15" xmlns="http://www.w3.org/2000/svg">
+    <path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="#69707D" fill-rule="evenodd"/>
+</svg>
 
   <div class="header">
     
@@ -98,7 +101,9 @@
     Coded by <a href="#">Your Name Here</a>.
   </div>
 
-  <div class="lightbox" id="lightbox"></div>
+  <div class="lightbox" id="lightbox">
+    <div class="lightboxContainer"></div>
+  </div>
 
   <script>
        const cart = document.querySelector('.toggle-img');
@@ -165,6 +170,7 @@
       
 
        function createProductCard(imageSrc) {
+        
               const money = document.querySelector('.price')
               const price = parseInt(money.textContent)
               let piece = parseInt(num.textContent)
@@ -206,6 +212,8 @@
               if (count <= 0) {
                 exp.style.display = 'none';
                 exp.textContent = '0';
+                cartBodyparagraph.style.display='block'
+
               } else {
                 exp.textContent = count;
               }
@@ -236,33 +244,38 @@
        const p2 = document.querySelector('.p-2');
        const p3 = document.querySelector('.p-3');
        const p4 = document.querySelector('.p-4');
-       document.querySelector('.add-btn').addEventListener('click', ()=>{
-        cartBodyparagraph.style.display = 'none';
-        selectedimg == 'p-1' || finalPath == imgsrc1 ? cartBody.appendChild(createProductCard(imgsrc1)):
-        selectedimg == 'p-2' || finalPath == imgsrc2 ? cartBody.appendChild(createProductCard(imgsrc2)):
-        selectedimg == 'p-3' || finalPath == imgsrc3? cartBody.appendChild(createProductCard(imgsrc3)):
-        selectedimg == 'p-4' || finalPath == imgsrc4? cartBody.appendChild(createProductCard(imgsrc4)):null;
-        
-       })
+       
        
        imgView.addEventListener('click', () => {
+         const lightboxContainer = document.querySelector('.lightboxContainer')
          const pictureSide = document.querySelector('.picture-side')
           const gallery = pictureSide.cloneNode(true);
           const galleryimg = gallery.querySelector('.fit-image');
           const lightbox = document.getElementById('lightbox');
-          const exit = document.createElement('img')
-          exit.src='images/icon-close.svg'
+          const exit = document.querySelector('.svg-image')
+          exit.style.display = 'block'
+          exit.addEventListener('mouseover', () => {
+          const path = exit.querySelector('path'); // Select the path element within the SVG
+          path.style.fill = '#ff7d1a'; // Change the fill color to white
+});
+          exit.addEventListener('mouseout', () => {
+            const path = exit.querySelector('path');
+            path.style.fill = '#69707D' // Reset the filter on mouse out
+        });
           
           
-            lightbox.append(exit, gallery);  
+           lightboxContainer.append(exit, gallery);  
+             lightboxContainer.style.display = 'flex';
+            lightboxContainer.style.flexDirection='column'
+            
             lightbox.style.display = 'flex';
             lightbox.style.flexDirection='column'
 
-          exit.style.marginLeft = '300px';
+          exit.style.marginLeft = 'auto';
           exit.style.marginBottom = '10px';
           exit.addEventListener('click', () => {
             lightbox.style.display = 'none'; 
-            lightbox.innerHTML = '';
+            gallery.innerHTML = '';
   }); 
           const thumbnails = document.querySelectorAll('.thumbnail');
           thumbnails.forEach(thumbnail => {
@@ -281,6 +294,7 @@
            let img2 = 'images/image-product-2.jpg';
            let img3 = 'images/image-product-3.jpg';
            let img4 = 'images/image-product-4.jpg';
+
            const arr = [img1, img2, img3, img4]
            const previous = document.querySelector('.previous')
            const next = document.querySelector('.next')
@@ -293,23 +307,38 @@
             }
             
             // Concatenate 'images/' with the extracted path
-            let finalPath = `"images/${imagePath}"`;
+            let currentImg = `images/${imagePath}`;
            next.addEventListener('click', ()=>{
-            let index = arr.indexOf(finalPath);
+            let index = arr.indexOf(currentImg);
             index = (index + 1)%arr.length;
             imgView.src = arr[index];
-            finalPath = arr[index]
-            console.log(finalPath);
-            console.log(imgView.src)
-            console.log(imagePath)
+            currentImg = arr[index]
 
            })
            previous.addEventListener('click', () => {
-                  let index = arr.indexOf(finalPath); 
+                  let index = arr.indexOf(currentImg); 
                   index = (index - 1 + arr.length) % arr.length;
                   imgView.src = arr[index];
-                  finalPath = arr[index]
+                  currentImg = arr[index]
                });
+       document.querySelector('.add-btn').addEventListener('click', ()=>{
+        cartBodyparagraph.style.display = 'none';
+        console.log(currentImg)
+        console.log(img1)
+        selectedimg == 'p-1' ? cartBody.appendChild(createProductCard(imgsrc1)):
+        selectedimg == 'p-2' ? cartBody.appendChild(createProductCard(imgsrc2)):
+        selectedimg == 'p-3' ? cartBody.appendChild(createProductCard(imgsrc3)):
+        selectedimg == 'p-4' ? cartBody.appendChild(createProductCard(imgsrc4)):null;
+        
+       })
+       document.querySelector('.add-btn').addEventListener('click', ()=>{
+        cartBodyparagraph.style.display = 'none';
+        currentImg == img1 ? cartBody.appendChild(createProductCard(img1)):
+        currentImg == img2 ? cartBody.appendChild(createProductCard(img2)):
+        currentImg == img3 ? cartBody.appendChild(createProductCard(img3)):
+        currentImg == img4 ? cartBody.appendChild(createProductCard(img4)):console.log('its not working');
+        
+       })
 
           const menu = document.querySelector('.menu')
           const hidden = document.querySelector('.hidden');

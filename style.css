@@ -2,6 +2,9 @@
  margin: 0;
  padding: 0;
 }
+svg{
+    display: none;
+}
 @font-face {
     font-family: 'kumbh Sans';
     src: url('KumbhSans-Regular.ttf');
@@ -52,7 +55,7 @@ body{
     position: fixed;
     top: 0;
     left: 0;
-    width: 60vw;
+    width: 20vw;
     height: 100%;
     background: rgba(255, 255, 255, 1);
     z-index: 1000;
@@ -92,7 +95,7 @@ body{
 .nav li:active{
     color: hsl(219, 9%, 45%);
     text-decoration: underline;
-    text-decoration-color: hsl(26, 100%, 55%);
+    text-decoration-color: #ff7d1a;
     text-decoration-thickness: 4px;
     text-underline-offset: 32px;
 }
@@ -147,6 +150,7 @@ body{
     border: 1px solid hsl(26, 100%, 55%);
     border-radius: 100px;
 }
+
 /* this is the main part */
 .main{
     display: flex;
@@ -154,12 +158,10 @@ body{
     align-items: center;    
     margin-top: 6vw;
     gap: 10vw;
-    margin: 10px;
-    border: 1px solid;
 }
 .img-view{
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
 }
 .fit-image{
     max-width: 100%;
@@ -189,7 +191,6 @@ body{
 }
 .para-side{
     padding-top: 60px;
-    border: 1px solid;
     max-width: 400px;
     padding: 0 10px;
 }
@@ -243,6 +244,9 @@ body{
     border-radius: 11px;
     border: none;
 }
+.cart-p{
+    margin-top: 45px;
+}
 .add-btn{
     
     height: 50px;
@@ -274,6 +278,8 @@ body{
     font-size: 11px; 
     text-align: center; 
     display: flex;
+    margin-top: 10px;
+    justify-content: center;
     align-items: flex-end;
 }
 .attribution a { 
@@ -289,7 +295,7 @@ body{
         margin: 8vw 19vw 1vw 19vw;
     }
     .btns{
-        flex-direction: column;
+        flex-direction: column
     }
     .toggle-box{
     }
@@ -298,7 +304,7 @@ body{
 @media (min-width: 320px) and (max-width: 768px) {
     .toggle-box{
         margin: 0 10px;
-        left: 50%;
+        left: 70%;
         top: 40%;
         transform: translate(-50%, -50%);
     }
@@ -365,6 +371,12 @@ body{
         left: 47%;
         top: 40%;
         transform: translate(-50%, -50%);
+    }
+    .hidden{
+        width: 60vw;
+    }
+    .fit-image{
+        border-radius: 0;
     }
 
 }
