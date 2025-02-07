@@ -90,9 +90,9 @@ body{
     margin-right: 40px !important;
     color: hsl(220, 13%, 13%) !important;
 }
-.nav li:hover,
-.nav li:focus,
-.nav li:active{
+.li:hover,
+.li:focus,
+.li:active{
     color: hsl(219, 9%, 45%);
     text-decoration: underline;
     text-decoration-color: #ff7d1a;
@@ -173,18 +173,15 @@ body{
     margin-top: 25px;
     
 }
-.img-slide img{
+.thumbnail{
     border-radius: 11px;
-    
+}
+.thumbnail:hover,
+.thumbnail:focus,
+.thumbnail:active{
+    border: 2px solid hsl(26, 100%, 55%);
 }
 
-.img-slide img:hover,
-.img-slide img:focus{
-    
-
-    background-color: rgba(255, 255, 255, 0.7);
-    border: 1px solid hsl(26, 100%, 55%);  
-}
 .slider{
     display: none;
 }
@@ -377,5 +374,6 @@ body{
     .fit-image{
         border-radius: 0;
     }
+  
 
 }
